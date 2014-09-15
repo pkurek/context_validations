@@ -18,7 +18,36 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+This is a fun project that I started cause I needed context validations.
+
+What you can do with it right now
+
+```ruby
+class CreateUserValidator
+  include Validations::Base
+
+  def validators
+    [
+      validates([:email, :name], :uniq),
+      validates(:email, :email_format),
+      validates(:name,  :length, minimum: 4),
+      validates(:password, :confirm),
+      validates(:password, :present),
+      validates(:password_confirmation, :present),
+      validates(:password, :length, in: 6..25),
+    ]
+  end
+end
+
+class User < ActiveRecord::Base
+end
+
+user = User.new(attributes)
+validator = CreateUserValidator.new(user)
+validator.valid?
+```
+
+
 
 ## Contributing
 
