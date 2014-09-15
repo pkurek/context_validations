@@ -24,7 +24,7 @@ What you can do with it right now
 
 ```ruby
 class CreateUserValidator
-  include Validations::Base
+  include ContextValidations::Base
 
   def validators
     [
